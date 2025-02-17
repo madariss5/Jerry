@@ -9,9 +9,9 @@ async function pingCommand(sock, chatId) {
         const ram = (os.totalmem() - os.freemem()) / (1024 * 1024 * 1024);
         const platform = os.platform();
 
-        const textt = "📊 *Calculating...*";
         // Calculate ping
-        await sock.sendMessage(chatId, { text: textt });
+        const pretext = '📊 *Calculating...*';
+        await sock.sendMessage(chatId, { text: pretext });
         const end = Date.now();
         const ping = end - start;
 
@@ -22,8 +22,7 @@ async function pingCommand(sock, chatId) {
             `*💾 RAM Usage:* ${ram.toFixed(2)}GB`;
 
         await sock.sendMessage(chatId, {
-            text: message,
-            edit: textt.key,
+            text: message
         });
     } catch (error) {
         console.error('Error in ping command:', error);
