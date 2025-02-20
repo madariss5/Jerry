@@ -61,7 +61,7 @@ async function viewOnceCommand(sock, chatId, message) {
 
                 await sock.sendMessage(chatId, {
                     image: buffer,
-                    caption: `*💀 Jerry BoT Anti ViewOnce 💀*\n\n*Type:* Image 📸\n${caption ? `*Caption:* ${caption}` : ''}`,
+                    caption: `*Jerry BoT Anti ViewOnce*\n*Type:* Image 📸\n${caption ? `*Caption:* ${caption}` : ''}`,
                 });
                 console.log('✅ View once image processed successfully');
                 return;
@@ -101,7 +101,7 @@ async function viewOnceCommand(sock, chatId, message) {
 
                 await sock.sendMessage(chatId, {
                     video: fs.readFileSync(tempFile),
-                    caption: `*💀 Jerry BoT Anti ViewOnce 💀*\n\n*Type:* Video 📹\n${caption ? `*Caption:* ${caption}` : ''}`
+                    caption: `*Jerry BoT Anti ViewOnce*\n*Type:* Video 📹\n${caption ? `*Caption:* ${caption}` : ''}`
                 });
 
                 // Clean up temp file
