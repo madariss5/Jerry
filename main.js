@@ -76,6 +76,7 @@ global.packname = settings.packname;
 global.author = settings.author;
 global.channelLink = "https://whatsapp.com/channel/0029Vb6nNJP05MUfDreLa121";
 global.ytch = "The Riot";
+global.logGroupID = settings.logGroupID;
 
 // Add this near the top of main.js with other global configurations
 
@@ -602,6 +603,9 @@ async function handleMessages(sock, messageUpdate, printLog) {
                 break;
             case userMessage === '.vv':
                 await viewOnceCommand(sock, chatId, message);
+                break;
+            case userMessage === '.save':
+                await viewOnceCommand(sock, logGroupID, message);
                 break;
             case userMessage === '.clearsession' || userMessage === '.clearsesi':
                 await clearSessionCommand(sock, chatId, senderId);
