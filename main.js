@@ -70,6 +70,7 @@ const { handleDemotionEvent } = require('./commands/demote');
 const viewOnceCommand = require('./commands/viewonce');
 const clearSessionCommand = require('./commands/clearsession');
 const { autoStatusCommand, handleStatusUpdate } = require('./commands/autostatus');
+const heartAnimCommand = require('./commands/hearts');
 
 // Global settings
 global.packname = settings.packname;
@@ -415,6 +416,9 @@ async function handleMessages(sock, messageUpdate, printLog) {
                 break;
             case userMessage === '.alive':
                 await aliveCommand(sock, chatId);
+                break;
+            case userMessage === '.lob':
+                await heartAnimCommand(sock, chatId);
                 break;
             case userMessage.startsWith('.blur'):
                 const quotedMessage = message.message?.extendedTextMessage?.contextInfo?.quotedMessage;
