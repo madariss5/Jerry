@@ -180,7 +180,7 @@ async function startJerryBotInc() {
             // Send message to bot's own number
             const botNumber = JerryBotInc.user.id.split(':')[0] + '@s.whatsapp.net';
             await JerryBotInc.sendMessage(botNumber, {
-                text: `🤖 Bot Connected Successfully!\n\n⏰ Time: ${new Date().toLocaleString()}\n✅ Status: Online and Ready!\n...`
+                text: `🌎 Bot Connected Successfully!\n⏰ Time: ${new Date().toLocaleString()}\n✅ Status: Online and Ready!\n...`
             });
 
             await delay(1999)
@@ -190,7 +190,7 @@ async function startJerryBotInc() {
             console.log(chalk.magenta(`${global.themeemoji || '•'} GITHUB: xamarth`))
             console.log(chalk.magenta(`${global.themeemoji || '•'} WA NUMBER: ${owner}`))
             console.log(chalk.magenta(`${global.themeemoji || '•'} CREDIT: RIOT`))
-            console.log(chalk.green(`${global.themeemoji || '•'} 🤖 Bot Connected Successfully! ✅`))
+            console.log(chalk.green(`${global.themeemoji || '•'} 🌍 Bot Connected Successfully! ✅`))
         }
         if (
             connection === "close" &&
