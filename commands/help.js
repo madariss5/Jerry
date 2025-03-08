@@ -4,16 +4,16 @@ const path = require('path');
 
 async function helpCommand(sock, chatId, channelLink) {
     const helpMessage = `
-╔═══════════════════╗
+╔══════════════╗
    *🤖 ${settings.botName || 'JerryBoT'}*  
    Version: *${settings.version || '1.0.0'}*
    by ${settings.botOwner || 'JERRY'}
    YT : ${global.ytch}
-╚═══════════════════╝
+╚══════════════╝
 
 *Available Commands:*
 
-╔═══════════════════╗
+╔══════════════╗
 🌐 *General Commands*:
 ║ ➤ .help or .menu
 ║ ➤ .ping
@@ -31,9 +31,9 @@ async function helpCommand(sock, chatId, channelLink) {
 ║ ➤ .groupinfo
 ║ ➤ .staff or .admins 
 ║ ➤ .vv
-╚═══════════════════╝
+╚══════════════╝
 
-╔═══════════════════╗
+╔══════════════╗
 🎨 *Image/Sticker Commands*:
 ║ ➤ .blur <image>
 ║ ➤ .simage <reply to sticker>
@@ -41,9 +41,9 @@ async function helpCommand(sock, chatId, channelLink) {
 ║ ➤ .meme
 ║ ➤ .take <packname> 
 ║ ➤ .emojimix <emj1>+<emj2>
-╚═══════════════════╝   
+╚══════════════╝   
 
-╔═══════════════════╗
+╔══════════════╗
 🛠️ *Admin Commands*:
 ║ ➤ .ban @user
 ║ ➤ .promote @user
@@ -61,25 +61,25 @@ async function helpCommand(sock, chatId, channelLink) {
 ║ ➤ .tagall
 ║ ➤ .chatbot
 ║ ➤ .resetlink
-╚═══════════════════╝
+╚══════════════╝
 
-╔═══════════════════╗
+╔══════════════╗
 🛠️ *Owner Commands*:
 ║ ➤ .mode
 ║ ➤ .autostatus
 ║ ➤ .clearsession
-╚═══════════════════╝
+╚══════════════╝
 
-╔═══════════════════╗
+╔══════════════╗
 🔗 *Github Commands:*
 ║ ➤ .git
 ║ ➤ .github
 ║ ➤ .sc
 ║ ➤ .script
 ║ ➤ .repo
-╚═══════════════════╝
+╚══════════════╝
 
-╔═══════════════════╗
+╔══════════════╗
 🎮 *Game Commands*:
 ║ ➤ .tictactoe @user
 ║ ➤ .hangman
@@ -88,9 +88,9 @@ async function helpCommand(sock, chatId, channelLink) {
 ║ ➤ .answer <answer>
 ║ ➤ .truth
 ║ ➤ .dare
-╚═══════════════════╝
+╚══════════════╝
 
-╔═══════════════════╗
+╔══════════════╗
 🎯 *Fun Commands*:
 ║ ➤ .compliment @user
 ║ ➤ .insult @user
@@ -98,15 +98,15 @@ async function helpCommand(sock, chatId, channelLink) {
 ║ ➤ .character @user
 ║ ➤ .wasted @user
 ║ ➤ .ship @user
-╚═══════════════════╝
+╚══════════════╝
 
-╔═══════════════════╗
+╔══════════════╗
 🎯 *Downloader*:
 ║ ➤ .play <song_name>
 ║ ➤ .song <song_name>
-╚═══════════════════╝
+╚══════════════╝
 
-Join our channel for updates...`;
+Give a Star ⭐ to my repo...`;
 
     try {
         const imagePath = path.join(__dirname, '../assets/bot_image.jpg');

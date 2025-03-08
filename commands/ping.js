@@ -10,20 +10,22 @@ async function pingCommand(sock, chatId) {
         const platform = os.platform();
 
         // Calculate ping
-        const pretext = '📊 *Calculating...*';
-        await sock.sendMessage(chatId, { text: pretext });
+        const pretext = '*Pong...*';
         const end = Date.now();
         const ping = end - start;
 
-        const message = `*🤖 Bot Status*\n\n` +
-            `*⚡ Response Time:* ${ping}ms\n` +
-            `*💻 Platform:* ${platform}\n` +
-            `*🔄 Uptime:* ${formatTime(uptime)}\n` +
-            `*💾 RAM Usage:* ${ram.toFixed(2)}GB`;
+        const message = `*⚡ Ping:* ${ping}ms\n` +
+            `*🔄 Uptime:* ${formatTime(uptime)}\n`;
+
+        let sent_msg = await sock.sendMessage(chatId, { text: pretext });
+
+        await new Promise(resolve => setTimeout(resolve, 500));
 
         await sock.sendMessage(chatId, {
-            text: message
+            text: message,
+            edit: sent_msg.key
         });
+
     } catch (error) {
         console.error('Error in ping command:', error);
         await sock.sendMessage(chatId, { text: 'Failed to get ping status.' });
