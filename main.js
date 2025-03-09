@@ -49,8 +49,7 @@ const { clearCommand } = require('./commands/clear');
 const pingCommand = require('./commands/ping');
 const aliveCommand = require('./commands/alive');
 const blurCommand = require('./commands/img-blur');
-const welcomeCommand = require('./commands/welcome');
-const goodbyeCommand = require('./commands/goodbye');
+
 const githubCommand = require('./commands/github');
 const { handleAntiBadwordCommand, handleBadwordDetection } = require('./lib/antibadword');
 const antibadwordCommand = require('./commands/antibadword');
@@ -428,40 +427,8 @@ async function handleMessages(sock, messageUpdate, printLog) {
                 const quotedMessage = message.message?.extendedTextMessage?.contextInfo?.quotedMessage;
                 await blurCommand(sock, chatId, message, quotedMessage);
                 break;
-            case userMessage.startsWith('.welcome'):
-                if (isGroup) {
-                    // Check admin status if not already checked
-                    if (!isSenderAdmin) {
-                        const adminStatus = await isAdmin(sock, chatId, senderId);
-                        isSenderAdmin = adminStatus.isSenderAdmin;
-                    }
 
-                    if (isSenderAdmin || message.key.fromMe) {
-                        await welcomeCommand(sock, chatId, message);
-                    } else {
-                        await sock.sendMessage(chatId, { text: 'Sorry, only group admins can use this command.' });
-                    }
-                } else {
-                    await sock.sendMessage(chatId, { text: 'This command can only be used in groups.' });
-                }
-                break;
-            case userMessage.startsWith('.goodbye'):
-                if (isGroup) {
-                    // Check admin status if not already checked
-                    if (!isSenderAdmin) {
-                        const adminStatus = await isAdmin(sock, chatId, senderId);
-                        isSenderAdmin = adminStatus.isSenderAdmin;
-                    }
 
-                    if (isSenderAdmin || message.key.fromMe) {
-                        await goodbyeCommand(sock, chatId, message);
-                    } else {
-                        await sock.sendMessage(chatId, { text: 'Sorry, only group admins can use this command.' });
-                    }
-                } else {
-                    await sock.sendMessage(chatId, { text: 'This command can only be used in groups.' });
-                }
-                break;
             case userMessage === '.git':
             case userMessage === '.github':
             case userMessage === '.sc':
