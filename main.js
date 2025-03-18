@@ -29,11 +29,7 @@ const { handleAntilinkCommand, handleLinkDetection } = require('./commands/antil
 const { Antilink } = require('./lib/antilink');
 const memeCommand = require('./commands/meme');
 const tagCommand = require('./commands/tag');
-const jokeCommand = require('./commands/joke');
-const quoteCommand = require('./commands/quote');
-const factCommand = require('./commands/fact');
-const weatherCommand = require('./commands/weather');
-const newsCommand = require('./commands/news');
+
 const kickCommand = require('./commands/kick');
 const simageCommand = require('./commands/simage');
 const attpCommand = require('./commands/attp');
@@ -49,8 +45,7 @@ const { clearCommand } = require('./commands/clear');
 const pingCommand = require('./commands/ping');
 const aliveCommand = require('./commands/alive');
 const blurCommand = require('./commands/img-blur');
-const welcomeCommand = require('./commands/welcome');
-const goodbyeCommand = require('./commands/goodbye');
+
 const githubCommand = require('./commands/github');
 const { handleAntiBadwordCommand, handleBadwordDetection } = require('./lib/antibadword');
 const antibadwordCommand = require('./commands/antibadword');
@@ -71,6 +66,7 @@ const viewOnceCommand = require('./commands/viewonce');
 const clearSessionCommand = require('./commands/clearsession');
 const { autoStatusCommand, handleStatusUpdate } = require('./commands/autostatus');
 const heartAnimCommand = require('./commands/hearts');
+const hackCommand = require('./commands/hack');
 
 // Global settings
 global.packname = settings.packname;
@@ -323,26 +319,7 @@ async function handleMessages(sock, messageUpdate, printLog) {
             case userMessage === '.meme':
                 await memeCommand(sock, chatId);
                 break;
-            case userMessage === '.joke':
-                await jokeCommand(sock, chatId);
-                break;
-            case userMessage === '.quote':
-                await quoteCommand(sock, chatId);
-                break;
-            case userMessage === '.fact':
-                await factCommand(sock, chatId);
-                break;
-            case userMessage.startsWith('.weather'):
-                const city = userMessage.slice(9).trim();
-                if (city) {
-                    await weatherCommand(sock, chatId, city);
-                } else {
-                    await sock.sendMessage(chatId, { text: 'Please specify a city, e.g., .weather London' });
-                }
-                break;
-            case userMessage === '.news':
-                await newsCommand(sock, chatId);
-                break;
+
             case userMessage.startsWith('.ttt') || userMessage.startsWith('.tictactoe'):
                 const tttText = userMessage.split(' ').slice(1).join(' ');
                 await tictactoeCommand(sock, chatId, senderId, tttText);
@@ -420,44 +397,15 @@ async function handleMessages(sock, messageUpdate, printLog) {
             case userMessage === '.lob':
                 await heartAnimCommand(sock, chatId);
                 break;
+            case userMessage === '.hack':
+                await hackCommand(sock, chatId);
+                break;
             case userMessage.startsWith('.blur'):
                 const quotedMessage = message.message?.extendedTextMessage?.contextInfo?.quotedMessage;
                 await blurCommand(sock, chatId, message, quotedMessage);
                 break;
-            case userMessage.startsWith('.welcome'):
-                if (isGroup) {
-                    // Check admin status if not already checked
-                    if (!isSenderAdmin) {
-                        const adminStatus = await isAdmin(sock, chatId, senderId);
-                        isSenderAdmin = adminStatus.isSenderAdmin;
-                    }
 
-                    if (isSenderAdmin || message.key.fromMe) {
-                        await welcomeCommand(sock, chatId, message);
-                    } else {
-                        await sock.sendMessage(chatId, { text: 'Sorry, only group admins can use this command.' });
-                    }
-                } else {
-                    await sock.sendMessage(chatId, { text: 'This command can only be used in groups.' });
-                }
-                break;
-            case userMessage.startsWith('.goodbye'):
-                if (isGroup) {
-                    // Check admin status if not already checked
-                    if (!isSenderAdmin) {
-                        const adminStatus = await isAdmin(sock, chatId, senderId);
-                        isSenderAdmin = adminStatus.isSenderAdmin;
-                    }
 
-                    if (isSenderAdmin || message.key.fromMe) {
-                        await goodbyeCommand(sock, chatId, message);
-                    } else {
-                        await sock.sendMessage(chatId, { text: 'Sorry, only group admins can use this command.' });
-                    }
-                } else {
-                    await sock.sendMessage(chatId, { text: 'This command can only be used in groups.' });
-                }
-                break;
             case userMessage === '.git':
             case userMessage === '.github':
             case userMessage === '.sc':

@@ -25,6 +25,7 @@ async function stickerCommand(sock, chatId, message) {
     }
 
     try {
+        console.log('📸 Processing Sticker Creation...');
         const mediaBuffer = await downloadMediaMessage(message, 'buffer', {}, { 
             logger: undefined, 
             reuploadRequest: sock.updateMediaMessage 
@@ -97,6 +98,7 @@ async function stickerCommand(sock, chatId, message) {
         await sock.sendMessage(chatId, { 
             sticker: finalBuffer
         });
+        console.log('✅ Sticker processed successfully');
 
         // Cleanup temp files
         try {
